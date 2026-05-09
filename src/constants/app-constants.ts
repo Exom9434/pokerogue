@@ -19,3 +19,6 @@ export const isApp = import.meta.env.MODE === "app";
 export const IS_TEST = import.meta.env.MODE === "test";
 
 export const bypassLogin = import.meta.env.VITE_BYPASS_LOGIN === "1";
+
+/** `true` if the development-only browser bot bridge should be exposed. */
+export const enableBot = isDev && import.meta.env.VITE_ENABLE_BOT === "1";

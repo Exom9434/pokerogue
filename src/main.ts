@@ -3,7 +3,7 @@ import "#init/init-manifest"; // initializes the manifest, must be done *before*
 import "#app/i18n"; // Initializes i18n on import
 
 import { InvertPostFX } from "#app/pipelines/invert";
-import { isBeta, isDev } from "#constants/app-constants";
+import { enableBot, isBeta, isDev } from "#constants/app-constants";
 import { version } from "#package.json";
 import Phaser from "phaser";
 import BBCodeTextPlugin from "phaser3-rex-plugins/plugins/bbcodetext-plugin";
@@ -70,6 +70,11 @@ async function startGame(): Promise<void> {
     version,
   });
   game.sound.pauseOnBlur = false;
+
+  if (enableBot) {
+    const { installBotBridge } = await import("./bot");
+    installBotBridge();
+  }
 }
 
 try {
